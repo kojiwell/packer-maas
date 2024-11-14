@@ -48,6 +48,14 @@ The installation runs in a non-interactive mode.
 
 Note: rocky9.pkr.hcl runs Packer in headless mode, with the serial port output from qemu redirected to stdio to give feedback on image creation process. If you wish to see more, change the value of `headless` to `false` in rocky9.pkr.hcl, remove `[ "-serial", "stdio" ]` from `qemuargs` section and select `View`, then `serial0` in the qemu window that appears during build. This lets you watch progress of the image build script. Press `ctrl-b 2` to switch to shell to explore more, and `ctrl-b 1` to go back to log view.
 
+### Building an arm64 image
+
+The following command should let you create an arm64 image. However, this is still work-in-progress because there will still be a problem described here: [Rocky 9 aarch64 deployment fails because of “grub2-install: error: This utility should not be used for EFI platforms because it does not support UEFI Secure Boot.”](https://discourse.maas.io/t/rocky-9-aarch64-deployment-fails-because-of-grub2-install-error-this-utility-should-not-be-used-for-efi-platforms-because-it-does-not-support-uefi-secure-boot/9863/1)
+
+```
+PACKER_LOG=1 ROOT_PARTITION=2 DETECT_EFI=1 EFI_PARTITION=1 ARCH=arm64 make rocky9.tar.gz
+```
+
 ### Makefile Parameters
 
 #### TIMEOUT

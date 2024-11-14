@@ -2,6 +2,7 @@
 
 include ../scripts/check.mk
 
+ARCH ?= amd64
 PACKER ?= packer
 PACKER_LOG ?= 0
 TIMEOUT ?= 1h
@@ -15,7 +16,7 @@ all: rocky9.tar.gz
 $(eval $(call check_packages_deps))
 
 rocky9.tar.gz: check-deps clean
-	${PACKER} init rocky9.pkr.hcl && ${PACKER} build -var timeout=${TIMEOUT} rocky9.pkr.hcl
+	${PACKER} init rocky9_${ARCH}.pkr.hcl && ${PACKER} build -var timeout=${TIMEOUT} rocky9_${ARCH}.pkr.hcl
 
 clean:
 	${RM} -rf output-rocky9 rocky9.tar.gz

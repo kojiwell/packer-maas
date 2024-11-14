@@ -32,7 +32,7 @@ sync -f "${PACKER_OUTPUT}"
 
 TMP_DIR=$(mktemp -d /tmp/packer-maas-XXXX)
 cleanup() {
-    for dev in "${TMP_DIR}"/p*/ "${TMP_DIR}"/disk/ "${TMP_DIR}"/boot/; do
+    for dev in "${TMP_DIR}"/p*/ "${TMP_DIR}"/disk/ "${TMP_DIR}"/boot/ "${TMP_DIR}"/efiroot/boot/efi; do
         dev=${dev%*/}
         if [ -d "${dev}" ]; then
             fusermount -u -z "${dev}"
