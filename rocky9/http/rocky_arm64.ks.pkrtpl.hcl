@@ -36,7 +36,7 @@ zerombr
 # Erase all partitions and assign default labels
 clearpart --all --initlabel --disklabel=gpt
 # Add the efi partition
-#part /boot/efi --size=200 --fstype=efi
+part /boot/efi --size=200 --fstype=efi
 # Initialize the primary root partition with ext4 filesystem
 part / --size=1 --grow --asprimary --fstype=ext4
 
